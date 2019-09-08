@@ -81,7 +81,7 @@ Behavior: rentCars(username, rentDate, carTypes, totalcars){
 		return rentNumber& receipt;
 	}
 	else
-		System. out. println("Your credit card is expired");
+		System.out.println("Your credit card is expired");
 }
 
 Behavior: cancelRent(rentNumber, cancelReason){
