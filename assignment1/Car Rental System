@@ -1,1 +1,91 @@
 # Design a Car Rental System
+
+User can:
+1、login the system
+2、search the cars she want
+3、rent the car
+4、cancel the rent
+
+
+-----------------------------------------------
+Class: user
+State: username, phoneNumber, address, driverLicenseId, creditCardDetails
+
+Behavior: loginSystem(username, password){
+	isUserExist(){
+		login to the system;
+	}
+	else
+		return false;
+}
+
+Behavior: searchCars(carTypes, price, availableData){
+	List<cars> cars = System.search(carTypes);
+	show cars to user;
+
+}
+
+Behavior: rentCar(){
+	rentalDetail = System.rental(username, usingDate, carTypes, numberOfCars)
+}
+
+Behavior: cancelRent(rentNumber){
+	System.cancelRent(rentNumber)
+}
+
+------------------------------------------------
+Class: creditCardDetails
+State: cardHolderName, cardNumber,  expireDate, cvv
+Behavior: isCardExpird(){
+	Date today = new Date();
+	if(today.compareTo(expiryDate) == 1)
+             return true;
+        return false;
+}
+
+
+------------------------------------------------
+Class: System
+State: webURL, address, companyName, nearbyLandmarks, rentPrice, totalCars
+
+Behavior: checkAvailableCars(carTypes, rentData){
+	show available cars to user
+} 
+
+Behavior: serverSearch(searchParams){
+	List<cars> cars
+	List<availableCars> availableCars
+
+	for(x = 0; x< cars.size; x++){
+		Boolean isAvailable = true;      //check cars which are available for the rent day
+		if(!System.checkAvailability(searchParams.carTypes, searchParams.rentDate, searchParams.location)){
+			isAvailability = false;
+			break;
+		}
+	
+		if(isAvailability && system.get(x).nearbyLandmarks.contains(searchParams.location)
+			&& system.get(x).price <= searchParams.maxRentPrice
+			&& system.get(x).price >= searchParams.minRentPrice)
+	  	   availableCars.add(system.get(x));
+
+	}
+	return availableCars;
+}
+
+Behavior: rentCars(username, rentDate, carTypes, totalcars){
+	availableCars = system,.serverSearch(searchParams)
+	
+	if(!creditCardDetails.isCardExpired()){
+		int price = car.price * totalCars * (rentLastDate - rentFirstDate);
+		PaymentService.makePayment(cardHolderName, price);
+		return rentNumber& receipt;
+	}
+	else
+		System. out. println("Your credit card is expired");
+}
+
+Behavior: cancelRent(rentNumber, cancelReason){
+	PaymentService.refund(cardHolderName, price);
+}
+
+
