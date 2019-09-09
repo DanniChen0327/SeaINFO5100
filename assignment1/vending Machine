@@ -1,1 +1,86 @@
 # Design a vending Machine (will accept coins of different denominations and vends out candies, soda etc)
+
+
+customer  can:
+1、glance over the goods
+2、choose the goods
+3、pay the bill
+4、cancel the payment
+
+-------------------------------------------
+
+Class: customer
+State: payMethods
+
+Behavior: glanceOverTheGood(){
+	vendingMachine.checkWorking();
+	list<goods> goods = machineGoods;
+	show goods to customer ;
+}
+
+Behavior: payThePrice(cardHloderName, price){
+	paymentDetail = vendingMachine.payServer(goods, numberOfGoods, unitPrice)
+}
+
+Behavior: cancelPayment(){
+	vendingMachine.cancelPayment()
+}
+
+-------------------------------------------
+Class: creditCardDetails
+State: cardHolderName, cardNumber,  expireDate, cvv
+Behavior: isCardExpired(){
+	Date today = new Date();
+	if(today.compareTo(expiryDate) == 1)
+             return true;
+        return false;
+}
+
+-------------------------------------------
+Class: vendingMachine
+State: place, remaining goods, goodsPrice
+
+Behavior: checkWorking(){
+	Boolean isVendingMachineGoingWell = true;
+	if(electricity blackout || machine breakdown)
+		isVendingMachineGoingWell = false;
+}
+
+
+Behavior: checkAvailableGoods(goodsName){
+	show available goods to customer
+}
+
+Behavior: searchGoods(){
+	list<goods> goods
+	list<availableGoods> availableGoods
+
+	for(x = 0; x< goods.size; x++){
+		Boolean isAvailable = true;      //check goods which are still remaining		if(!vendingMachine.checkAvailableGoods()){
+			isAvailable = false;
+			return "sold out"			
+		}
+		else{
+			availableGoods.add(vendingMachine.get(x));
+			
+		}
+	}
+	return availableGoods;
+
+}
+
+Behavior: payServer(goods, numberOfGoods, unitPrice){
+	if(checkAvailableGoods == 1){
+		if(!creditCardDetails.isCardExpired()){
+			int price = numberOfGoods * unitPrice;
+			customer.payThePrice(cardHolderName, price);
+		}
+		return receipt;
+	}
+	else
+		return false;
+}
+
+Behavior: cancelPayment(){
+	vendingMachine return to main menu
+}

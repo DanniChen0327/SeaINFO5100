@@ -20,13 +20,13 @@ Behavior: loginSystem(username, password){
 }
 
 Behavior: searchCars(carTypes, price, availableData){
-	List<cars> cars = System.search(carTypes);
+	List<cars> cars = System.serverSearch(carTypes);
 	show cars to user;
 
 }
 
-Behavior: rentCar(){
-	rentalDetail = System.rental(username, usingDate, carTypes, numberOfCars)
+Behavior: rentCars(){
+	rentDetail = System.rentCars(username, rentDate, carTypes, numberOfCars)
 }
 
 Behavior: cancelRent(rentNumber){
@@ -36,7 +36,7 @@ Behavior: cancelRent(rentNumber){
 ------------------------------------------------
 Class: creditCardDetails
 State: cardHolderName, cardNumber,  expireDate, cvv
-Behavior: isCardExpird(){
+Behavior: isCardExpired(){
 	Date today = new Date();
 	if(today.compareTo(expiryDate) == 1)
              return true;
@@ -46,9 +46,9 @@ Behavior: isCardExpird(){
 
 ------------------------------------------------
 Class: System
-State: webURL, address, companyName, nearbyLandmarks, rentPrice, totalCars
+State: webURL, address, companyName, nearbyLandmarks, rentPrice, numberOfCars
 
-Behavior: checkAvailableCars(carTypes, rentData){
+Behavior: checkAvailableCars(carTypes, rentData, location){
 	show available cars to user
 } 
 
@@ -57,7 +57,7 @@ Behavior: serverSearch(searchParams){
 	List<availableCars> availableCars
 
 	for(x = 0; x< cars.size; x++){
-		Boolean isAvailable = true;      //check cars which are available for the rent day
+		Boolean isAvailability = true;      //check cars which are available for the rent day
 		if(!System.checkAvailability(searchParams.carTypes, searchParams.rentDate, searchParams.location)){
 			isAvailability = false;
 			break;
@@ -72,11 +72,11 @@ Behavior: serverSearch(searchParams){
 	return availableCars;
 }
 
-Behavior: rentCars(username, rentDate, carTypes, totalcars){
-	availableCars = system,.serverSearch(searchParams)
+Behavior: rentCars(username, rentDate, carTypes, numberOfCars){
+	availableCars = system.serverSearch(searchParams)
 	
 	if(!creditCardDetails.isCardExpired()){
-		int price = car.price * totalCars * (rentLastDate - rentFirstDate);
+		int price = car.price * numberOfCars * (rentLastDate - rentFirstDate);
 		PaymentService.makePayment(cardHolderName, price);
 		return rentNumber& receipt;
 	}
@@ -84,7 +84,7 @@ Behavior: rentCars(username, rentDate, carTypes, totalcars){
 		System.out.println("Your credit card is expired");
 }
 
-Behavior: cancelRent(rentNumber, cancelReason){
+Behavior: cancelRent(rentNumber){
 	PaymentService.refund(cardHolderName, price);
 }
 

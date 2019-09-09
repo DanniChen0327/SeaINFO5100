@@ -1,5 +1,57 @@
 # Design a Traffic Controller System for a Junction
 
+Citizens can:
+1、go across the road
+2、wait for the light change to pass
+3、stop in emergency
 
-User can
  
+---------------------------------------------
+Class: pedestrian
+
+Behavior: goAcrossTheRoad(){
+	if(TrafficControllerSystem.greenLight == 1){
+		go across the road;
+	}
+	else
+		wait until the traffic light turn light
+}
+
+Behavior: stopInEmergency(){
+	if(police || Ambulance)
+		pedestrian stop;
+}
+
+---------------------------------------------
+Class: cars
+
+Behavior: goAcrossTheRoad(){
+	if(TrafficControllerSystem.greenLight == 1){
+		go across the road;
+		if(pedestrian.goAcrossTheRoad)
+			stop until the pedestrian pass
+	}
+	else
+		wait until the traffic light turn light
+}
+
+---------------------------------------------
+Class: trafficControllerSystem
+State: lightStatue, timer
+
+Behavior: timerCountDown(){
+	if(lightStatus == light){
+		for(timer = 30s; timer > 0; timer--)
+			pedestrian.goAcrossTheRoad()	
+	}
+	else{
+		lightStatus = red;
+		pedestrian stop to wait;
+	}
+}
+
+
+
+
+
+

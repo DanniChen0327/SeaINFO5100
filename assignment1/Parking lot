@@ -1,1 +1,58 @@
 # Design a Parking lot
+
+User can:
+1、park the car
+2、pay the parking fee
+
+-------------------------------------------
+Class: user
+
+Behavior: parkTheCar(){
+	if(parkingLot.checkVacancies == 1){
+		park the car;
+	}
+	else
+		go to other place
+}
+
+Behavior: payParkingFee(){
+	fee = parkingLot.chargeParkingFee(parkingTime, hourlyPrice)
+}
+
+-------------------------------------------
+Class: parkingLot
+State: address, numberOfVacancy, HourlyPrice
+
+Behavior: checkVacancies(){
+	show the number of vacancy
+}
+
+Behavior: searchVacancies(){
+	list<parkingSpace> parkingSpace
+	list<availableSpace> availableSpace
+
+	for(x = 0; x< parkingLot.size; x++){
+		Boolean isAvailable = true;      //check space which are still empty
+		if(!parkingLot.checkAvailability()){
+			isAvailable = false;	
+			return "no space"	
+		}
+		else{
+			availableSpace.add(parkingLot.get(x));
+			
+		}
+	}
+	return availableSpace;
+
+}
+
+
+Behavior: chargeParkingFee(parkingHours, hourlyPrice){
+	Time parkingTime = new Time()
+	parkingTime = getOutParkingLot-getInParkingLot;
+	if(parkingTime > freeParkingPeriod){
+		parkingFee = parkingTime * hourlyPrice;
+	}
+	else
+		chargeFee = 0;
+}

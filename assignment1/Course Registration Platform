@@ -1,1 +1,99 @@
 # Design a Course Registration Platform
+
+Students can:
+1、login the platform
+2、search courses
+3、register courses
+4、change the same course to other time
+5、cancel courses
+
+-------------------------------------------
+
+Class: students
+State: studentName, studentId, semester, studentCredits, schedule
+
+Behavior: loginPlatform(studentName, password){
+	isStudentNameRight(){
+		login to the platform;
+	}
+	else
+		return false;
+}
+
+Behavior: searchCourses(semester, courseName){
+	List<course> course = platform.searchCourses(semester, courseName);
+	show results to students;
+}
+
+Behavior: registerCourses(studentId){
+	registerResult = platform.registerCourses(courseName, studentId)
+}
+
+Behavior: changeCourseTime(semester, courseName){
+	List<course> course = platform.searchCourses(semester, courseName);
+	choose another time;
+}
+
+Behavior: cancelCourses(courseId){
+	platform.cancelCourse(courseId) 
+}
+
+-------------------------------------------
+Class: platform
+State: webURL
+
+Behavior: checkAvailableCourses(courseName){
+	show available courses to students
+}
+
+Behavior: searchCourses(semester, courseName){
+	list<courses> courses
+	list<availableCourses> availableCourses
+
+	for(x = 0; x< courses.size; x++){
+		Boolean isAvailable = true;      //check courses which are still have the empty place
+		if(!platform.checkAvailableCourses(courseName)){
+			isAvailable = false;
+			add to waitingList;		
+		}
+		else{
+			availableCourses.add(platform.get(x));
+			
+		}
+	}
+	return availableCourse;
+
+}
+
+Behavior: avoidClassConflict(courseTime, schedule){
+	isCourseAtDifferentTime(){
+		time courseTime = new Time();
+		if(courseTime.compareTo(schedule) == 0)
+			return true;
+		else
+			return student.changeCourseTime();
+	}
+}
+
+Behavior: registerCourses(courseName, studentId){
+	if(isAvailable && platform.avoidClassConflict){
+		student.registerCourses(studentId);
+	}
+
+}
+
+
+Behavior: showStudentList(courseId){
+	list<student> student = student.registerCourses(studentId);
+}
+
+Behavior: cancelCourses(courseId){
+	platform.showStudentList() = new list<student>
+}
+-------------------------------------------
+Class: professor
+State: professorName, professorId, courseSchedule, classroom
+
+Behavior: checkRegisteredStudents(courseId){
+	list<students> students = platform.showStudentList;
+} 
