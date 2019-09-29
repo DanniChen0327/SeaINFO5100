@@ -1,1 +1,23 @@
+encapsulation is one of the most important characteristics of Java. When we define some 
+attributes of the class, we may use private to encapsulate it, so that others could not change the value of the attribute directly. After encapsulate the attribute, we can use the setter method to limit the range of value, when others give value out of the range, it will make mistakes.
+
+public class Test(){
+	private int studentid;
+	public int setstudentid(int studentid){
+		this.studentid = studentid;
+		if(studentid <0 || studentid > 50)
+			throw new IllegalArgumentException("the studentid should between 0 and 50");
+	}
+	public void getstudentid(){
+		return studentid;
+	}
+	public static void main(String[] args){
+		Test test = new Test();
+		test.studentid = 40;
+		test.setstudentid(60);
+	}
+
+} 
+
+In the example above, if others give value directly to the studentid, it can not reach it because the studentid attribute has been encapsulated. And when the setstudentid is given an out range value, it will make mistake.
 
