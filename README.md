@@ -1,2 +1,2 @@
 # SeaINFO5100
-Java class
+Danni Chen Java class assignment
