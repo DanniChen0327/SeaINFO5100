@@ -1,0 +1,7 @@
+extra credit
+
+in the main function, the program instantiated B and the b.addAll function do the addAll() in class B and now addCount = 3. In the class B addAll() return super.addAll() and then go to class A. class A addAll() calls this.add(), because the class B extends class A and override the add() function, so this.add() will go to class B and execute add(). the add() in class B return super.add(), then the program go to class A and execute add(). Because the list has 3 numbers, the add() will do three times, in the last the addCount = 6.
+
+Because class B didn't override the getI() in the class A, so b.getI() will execute getI() function in class A and read i = 0.
+
+so the answer is 6+0 =6.
