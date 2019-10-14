@@ -1,0 +1,11 @@
+Explain the difference between final and finally in Java 8.
+
+final:
+final is a keyword to define data, methods and classes. 
+The data defined with final cannot be changed to other value after they are initialized.
+The methods with final scope cannot be overrided by its children methods.
+The class defined with final cannot be extended by other classes.
+If the class is defined in final, it cannot be defined in abstract.
+
+finally:
+finally()is always used in exception handling. When we use try() and catch() to handle exception, we can use finally() to free the resources, no mater whether the exception happend or not.
