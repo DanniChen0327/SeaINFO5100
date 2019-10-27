@@ -1,0 +1,5 @@
+Write two differences between ArrayList and LinkedList.
+
+ArrayList is based on array, it can grow up automatically. ArrayList is more efficient in searching data but slower in add or delete item in the arrayList.
+
+LinkedList is linked by several listNodes and faster than ArrayList in add or delete item, because it only need to change the pointer, but it slower in searching because it has to scan from head to tail. And LinkedList takes more space than ArrayList.
