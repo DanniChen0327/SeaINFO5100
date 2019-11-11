@@ -1,0 +1,9 @@
+123|Danni|Female|China
+235|Grace|Female|India 
+324|Jone|Male|America
+326|Mike|Male|China
+327|April|Female|India
+678|Tom|Male|India
+567|Helen｜Female|China
+432|Tony｜Female|Japan
+
